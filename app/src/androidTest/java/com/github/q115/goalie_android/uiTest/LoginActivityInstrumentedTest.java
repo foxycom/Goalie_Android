@@ -49,65 +49,9 @@ public class LoginActivityInstrumentedTest {
     public ActivityTestRule<LoginActivity> mActivityRule =
             new ActivityTestRule<>(LoginActivity.class);
 
-    @Test
-    public void viewCorrectlyLaidout() throws Exception {
-        // status is hidden
-        onView(withId(R.id.username)).check(matches(isDisplayed()));
-        onView(withId(R.id.register_server_response)).check(matches(not(isDisplayed())));
-        onView(withId(R.id.btn_register)).check(matches(isDisplayed()));
-    }
 
-    @Test
-    public void invalidClientUsername() throws Exception {
-        String usernameERR = mActivityRule.getActivity().getString(R.string.username_error);
 
-        // too short
-        onView(withId(R.id.username)).perform(clearText(), typeText("123"));
-        onView(withId(R.id.btn_register)).perform(click());
-        onView(withId(R.id.register_server_response)).check(matches(isDisplayed()));
-        onView(withId(R.id.register_server_response)).check(matches(withText(usernameERR)));
 
-        // invalid character
-        onView(withId(R.id.username)).perform(clearText(), typeText("1234 "));
-        onView(withId(R.id.btn_register)).perform(click());
-        onView(withId(R.id.register_server_response)).check(matches(withText(usernameERR)));
-
-        // invalid character
-        onView(withId(R.id.username)).perform(clearText(), typeText("1234:"));
-        onView(withId(R.id.btn_register)).perform(click());
-        onView(withId(R.id.register_server_response)).check(matches(withText(usernameERR)));
-
-        // invalid character
-        onView(withId(R.id.username)).perform(clearText(), typeText("1234/"));
-        onView(withId(R.id.btn_register)).perform(click());
-        onView(withId(R.id.register_server_response)).check(matches(withText(usernameERR)));
-
-        // invalid character
-        onView(withId(R.id.username)).perform(clearText(), typeText("1234\\"));
-        onView(withId(R.id.btn_register)).perform(click());
-        onView(withId(R.id.register_server_response)).check(matches(withText(usernameERR)));
-    }
-
-    @Test
-    public void invalidServerUsername() throws Exception {
-        String usernameERR = mActivityRule.getActivity().getString(R.string.username_taken);
-
-        onView(withId(R.id.username)).perform(clearText(), typeText(RESTUtil.getValidFriendUsername()));
-        onView(withId(R.id.btn_register)).perform(click());
-        onView(withId(R.id.register_server_response)).check(matches(withText(usernameERR)));
-    }
-
-    @Test
-    public void rotate() throws Exception {
-        onView(withId(R.id.username)).perform(clearText(), typeText(""));
-        onView(withId(R.id.username)).check(matches(withText("")));
-        onView(withId(R.id.username)).perform(clearText(), typeText(RESTUtil.getValidFriendUsername()));
-        mActivityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        Thread.sleep(750);
-        onView(withId(R.id.username)).check(matches(withText(RESTUtil.getValidFriendUsername())));
-        mActivityRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        Thread.sleep(750);
-    }
 
     @AfterClass
     public static void validUsername() throws Exception {
