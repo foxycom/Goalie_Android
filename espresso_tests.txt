@@ -1,0 +1,6 @@
+com.github.q115.goalie_android.uiTest.FriendActivityInstrumentedTest addContact
+com.github.q115.goalie_android.uiTest.FriendActivityInstrumentedTest viewCorrectlyLaidout
+com.github.q115.goalie_android.uiTest.MainActivityInstrumentedTest menuClickProfileGoesToProfile
+com.github.q115.goalie_android.uiTest.MainActivityInstrumentedTest viewCorrectlyLaidout
+com.github.q115.goalie_android.uiTest.MainActivityInstrumentedTest rotate
+com.github.q115.goalie_android.uiTest.MainActivityInstrumentedTest menuClickFriendsGoesToFriends
