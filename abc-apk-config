@@ -13,3 +13,4 @@ make_instr_filter_packages = java.io
 make_instr_filter_classes = java.lang.StringBuilder
 make_carving_filter_methods =
 make_trace_multiple_threads = false
+make_gui_coverage_file = app/build/outputs/code-coverage/connected/*coverage.ec
